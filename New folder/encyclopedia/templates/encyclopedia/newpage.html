@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block body %}
+    <h1>Creating your own page</h1>
+    <form action="{% url 'save' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Title</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title of the page..." name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Markdown content of the page</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="markdown" required></textarea>
+          <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>
+        
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>>
+
+{% endblock %}
